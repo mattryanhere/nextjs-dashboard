@@ -8,8 +8,8 @@ import bcrypt from 'bcrypt';
 async function getUser(email) {
     try {
         const sql = neon(`${process.env.DATABASE_URL}`);
-        const user = await sql`SELECT * FROM users WHERE email=${email}`;
-        return user.rows[0];
+        const rows = await sql`SELECT * FROM users WHERE email=${email}`;
+        return rows[0];
     } catch (error) {
         console.error('Failed to fetch user:', error);
         throw new Error('Failed to fetch user');
